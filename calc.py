@@ -3,6 +3,12 @@
 str_command = input("Что вы хотите посчитать?")
 str_command.replace(' ', '')
 
+hp_ops = tuple('^')
+mp_ops = tuple('*/')
+lp_ops = ('+', '-')
+supported_ops = hp_ops + mp_ops + lp_ops
+digits_chars = tuple(map(str, range(10))) + tuple('.,-')
+
 sign_A = '' 
 sign_B = ''
 
