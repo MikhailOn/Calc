@@ -1,33 +1,42 @@
 #simple div
 
-str_command = input("Please type command a + b or a-b: ")
+str_command = input("Что вы хотите посчитать?")
 str_command.replace(' ', '')
+
+sign_A = '' 
+sign_B = ''
 
 str_A = ''
 str_B = ''
-operation = ''
-'''
--2.5^-3
-'''
-for i, letter in enumerate(str_command):
-	if letter in '+-*/^' and (operation == '') and (i > 0):
-		operation = letter
-	else:
-		if operation == '':
-			str_A = str_A + letter
-		else:
-			str_B = str_B + letter
-var_A = float(str_A)
-var_B = float(str_B)
-result = None
+variables = ['']
+operations = []
 
-if operation in '+-*/':
-	if var_B == 0 and operation == '/':
-		result = 'Inf'
+for i, letter in enumerate(str_command):
+	if letter in '+-*/^' and (i>0) and variables[len(operations)] != '':
+		operations.append(letter)
+		variables.append('')
 	else:
-		result = eval('{0}{1}{2}'.format(var_A, operation, var_B))
-elif operation == '^':
-	result = var_A ** var_B
-else:
-	result = "unknown"
-print("Result: " + str(result))
+		index = len(operations)
+		variables[index] = variables[index] + letter
+
+variables = list(map(float, variables))
+result = variables[0]
+
+for i, operation in enumerate(operations):
+	if type(result) == str:
+		break
+
+	var_A = result
+	var_B = variables[i + 1]
+
+	if operation in '+-*/':
+		if var_B == 0 and operation == '':
+			result = 'Inf'
+		else:
+			result = eval('{0}{1}{2}'.format(var_A, operation, var_B))
+	elif operation == '^':
+		result = var_A**var_B
+	else:
+		result = unknown
+
+print("Result:"  + str(result))
