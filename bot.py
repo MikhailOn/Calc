@@ -8,7 +8,7 @@ import requests
 import speech_recognition
 #распознование голоса
 import os
-#для работы с файловой системой
+#для работы с файлами системы
 import pydub
 #для обработки oga файлов (так как тг использует oga, а не wav)
 from pydub import AudioSegment
